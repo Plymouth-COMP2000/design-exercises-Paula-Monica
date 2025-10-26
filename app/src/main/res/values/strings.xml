@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">RestaurantManager</string>
+    <string name="app_name">Restaurant Manager</string>
+    <string name="app_logo_description"> Restaurant manager logo</string>
+    <string name="login_btn"> Login</string>
+    <string name="guest_signup"> Guest Account Creation</string>
+    <string name="staff_signup"> Staff Account Creation</string>
+    <string name="app_info"> Restaurant Manager helps you easily handle every aspect of dining management, from booking restaurant reservations and browsing menus to organizing and managing reservations for your own restaurant.</string>
+
 </resources>
