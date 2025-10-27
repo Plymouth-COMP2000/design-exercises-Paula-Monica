@@ -5,5 +5,13 @@
     <string name="guest_signup"> Guest Account Creation</string>
     <string name="staff_signup"> Staff Account Creation</string>
     <string name="app_info"> Restaurant Manager helps you easily handle every aspect of dining management, from booking restaurant reservations and browsing menus to organizing and managing reservations for your own restaurant.</string>
-
+    <string name="guest_signup_title"> Guest Sign-up </string>
+    <string name="email_label"> Email: </string>
+    <string name="username_label"> Username: </string>
+    <string name="firstname_label"> First name: </string>
+    <string name="lastname_label"> Last name: </string>
+    <string name="phone_number_label"> Phone number: </string>
+    <string name="password_label"> Password: </string>
+    <string name="signup_btn"> Signup </string>
+    <string name="back_arrow_description"> Return arrow </string>
 </resources>

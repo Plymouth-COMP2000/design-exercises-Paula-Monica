@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c8d5d7">
+
+    <!--ScrollView used for entire page to insure responsive design for all devices/orientations-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/signupTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/guest_signup_title"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"/>
+
+            <!--Email Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email_label"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/emailInput"/>
+
+            <!--Email input field-->
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                tools:ignore="Autofill" />
+
+            <!--Username Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/usernameInput"
+                android:text="@string/username_label"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!--Username input field-->
+            <EditText
+                android:id="@+id/usernameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                tools:ignore="Autofill"/>
+
+            <!--First name Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/firstname_label"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/firstnameInput"/>
+
+            <!--First name input field-->
+            <EditText
+                android:id="@+id/firstnameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                tools:ignore="Autofill"/>
+
+            <!--Last name Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lastname_label"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/lastnameInput"/>
+
+            <!--Last name input field-->
+            <EditText
+                android:id="@+id/lastnameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                tools:ignore="Autofill"/>
+
+            <!--Phone number Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number_label"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/phonenumberInput"/>
+
+            <!--Phone number input field-->
+            <EditText
+                android:id="@+id/phonenumberInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:padding="16dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                tools:ignore="Autofill"/>
+
+            <!--Password Label-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_label"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="5dp"
+                android:labelFor="@id/passwordInput"/>
+
+            <!--Password input field-->
+            <EditText
+                android:id="@+id/passwordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginBottom="5dp"
+                android:layout_marginHorizontal="16dp"
+                tools:ignore="Autofill"/>
+
+            <!--Signup button-->
+            <Button
+                android:id="@+id/signupButton"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="@string/signup_btn"
+                android:textSize="18sp"
+                android:padding="16dp"
+                android:textAllCaps="false"
+                android:backgroundTint="#e5a975"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Back arrow -->
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/back_arrow"
+        android:contentDescription="@string/back_arrow_description"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</FrameLayout>

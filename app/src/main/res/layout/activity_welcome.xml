@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--ScrollView used for entire page to insure responsive design for all devices/orientations-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="#FAFAFA">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="24dp"
         android:gravity="center_horizontal"
         android:background="#c8d5d7">
-
+        <!--Logo and Title layout-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="80dp">
-
+            <!--Logo image-->
             <ImageView
                 android:id="@+id/appLogo"
                 android:layout_width="80dp"
@@ -30,7 +31,7 @@
                 android:contentDescription="@string/app_logo_description"
                 android:layout_marginEnd="16dp"
                 android:padding="1dp"/>
-
+            <!--Title-->
             <TextView
                 android:id="@+id/app_name"
                 android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
 
         </LinearLayout>
 
+        <!--Login btn-->
         <Button
             android:id="@+id/loginButton"
             android:layout_width="300dp"
@@ -57,6 +59,7 @@
             android:textColor="#000000"
             android:fontFamily="sans-serif-medium"/>
 
+        <!--Guest signup btn-->
         <Button
             android:id="@+id/guestAccountButton"
             android:layout_width="300dp"
@@ -70,6 +73,7 @@
             android:textColor="#000000"
             android:fontFamily="sans-serif-medium"/>
 
+        <!--App Info-->
         <TextView
             android:id="@+id/appInfoSection"
             android:layout_width="match_parent"
@@ -83,6 +87,7 @@
             android:padding="24dp"
             android:layout_marginBottom="32dp"/>
 
+        <!--Staff signup btn-->
         <Button
             android:id="@+id/staffCreateAccountButton"
             android:layout_width="wrap_content"
