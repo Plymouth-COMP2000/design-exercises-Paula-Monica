@@ -22,4 +22,7 @@
     <string name="incorrect_password"> Password is too weak </string>
     <string name="confirm_btn"> Confirm </string>
     <string name="successful_signup"> Sign-up Successful! </string>
+    <string name="welcome_back"> Welcome Back! </string>
+    <string name="unsuccessful_signup"> Email or password is incorrect </string>
+
 </resources>
