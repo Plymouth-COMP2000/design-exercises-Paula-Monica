@@ -13,7 +13,10 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="Unnamed">
+      <SelectionState runConfigName="GuestSignup">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="SuccessSignup">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

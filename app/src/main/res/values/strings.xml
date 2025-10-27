@@ -20,4 +20,6 @@
     <string name="incorrect_lastname"> Last name is incorrectly formated </string>
     <string name="incorrect_phonenumber"> Phone number is incorrectly formatted or taken </string>
     <string name="incorrect_password"> Password is too weak </string>
+    <string name="confirm_btn"> Confirm </string>
+    <string name="successful_signup"> Sign-up Successful! </string>
 </resources>
