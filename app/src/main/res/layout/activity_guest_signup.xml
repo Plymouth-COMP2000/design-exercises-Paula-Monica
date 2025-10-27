@@ -50,11 +50,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="textEmailAddress"
+                android:layout_marginBottom="2dp"
                 android:padding="16dp"
                 tools:ignore="Autofill" />
+
+            <!--Incorrect email warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_email"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
 
             <!--Username Label-->
             <TextView
@@ -76,9 +87,20 @@
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:background="@drawable/edittext_background"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginHorizontal="16dp"
                 tools:ignore="Autofill"/>
+
+            <!--Incorrect username warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_username"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
 
             <!--First name Label-->
             <TextView
@@ -100,9 +122,20 @@
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:background="@drawable/edittext_background"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginHorizontal="16dp"
                 tools:ignore="Autofill"/>
+
+            <!--Incorrect firstname warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_firstname"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
 
             <!--Last name Label-->
             <TextView
@@ -124,9 +157,20 @@
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:background="@drawable/edittext_background"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginHorizontal="16dp"
                 tools:ignore="Autofill"/>
+
+            <!--Incorrect lastname warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_lastname"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
 
             <!--Phone number Label-->
             <TextView
@@ -152,6 +196,17 @@
                 android:layout_marginHorizontal="16dp"
                 tools:ignore="Autofill"/>
 
+            <!--Incorrect phonenumber warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_phonenumber"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
+
             <!--Password Label-->
             <TextView
                 android:layout_width="match_parent"
@@ -175,6 +230,17 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginHorizontal="16dp"
                 tools:ignore="Autofill"/>
+
+            <!--Incorrect password warning-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/incorrect_password"
+                android:textSize="15sp"
+                android:layout_marginHorizontal="16dp"
+                android:textColor="#c66d6f"
+                android:layout_marginBottom="2dp"
+                android:visibility="visible" />
 
             <!--Signup button-->
             <Button

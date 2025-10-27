@@ -14,4 +14,10 @@
     <string name="password_label"> Password: </string>
     <string name="signup_btn"> Signup </string>
     <string name="back_arrow_description"> Return arrow </string>
+    <string name="incorrect_email"> Email has been taken or is incorrectly formatted </string>
+    <string name="incorrect_username"> Username has been taken </string>
+    <string name="incorrect_firstname"> First name is incorrectly formated </string>
+    <string name="incorrect_lastname"> Last name is incorrectly formated </string>
+    <string name="incorrect_phonenumber"> Phone number is incorrectly formatted or taken </string>
+    <string name="incorrect_password"> Password is too weak </string>
 </resources>
