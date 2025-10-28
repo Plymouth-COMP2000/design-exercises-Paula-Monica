@@ -36,6 +36,10 @@
             android:name=".GuestDashboardActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".GuestViewMenuActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
