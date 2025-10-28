@@ -24,5 +24,11 @@
     <string name="successful_signup"> Sign-up Successful! </string>
     <string name="welcome_back"> Welcome Back! </string>
     <string name="unsuccessful_signup"> Email or password is incorrect </string>
+    <string name="sign_out_btn">Sign out</string>
+    <string name="settings_btn">Settings⚙</string>
+    <string name="welcome_message">Welcome Name!</string>
+    <string name="view_menu_btn">View menu</string>
+    <string name="make_reservation_btn">Make reservation</string>
+    <string name="my_reservations_btn">My reservations</string>
 
 </resources>

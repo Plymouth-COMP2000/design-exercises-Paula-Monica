@@ -32,6 +32,10 @@
             android:name=".LoginActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".GuestDashboardActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
