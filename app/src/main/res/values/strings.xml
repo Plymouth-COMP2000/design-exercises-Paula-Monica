@@ -38,5 +38,15 @@
     <string name="item_description_example">Item Description\n\nPasta with tomatoes.</string>
     <string name="item_name"> Item Name </string>
     <string name="price"> £ </string>
+    <string name="change_details_title">Change details:</string>
+    <string name="notification_preferences_title">Change notification preferences:</string>
+    <string name="reservation_reminders_title">Reservation reminders:</string>
+    <string name="reservation_changes_notif">Reservation changes:</string>
+    <string name="cancellation_notif">Cancellation:</string>
+    <string name="datetime_change_notif">Date/Time change:</string>
+    <string name="day_before_reminder">Day before:</string>
+    <string name="hour_before_reminder">Hour before:</string>
+    <string name="save_changes_btn">Save changes</string>
+    <string name="toggle_notification">Toggle notification</string>
 
 </resources>

@@ -40,6 +40,10 @@
             android:name=".GuestViewMenuActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".GuestChangeSettingsActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
