@@ -59,6 +59,7 @@
 
             <!--Incorrect email warning-->
             <TextView
+                android:id="@+id/emailWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_email"
@@ -94,6 +95,7 @@
 
             <!--Incorrect username warning-->
             <TextView
+                android:id="@+id/usernameWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_username"
@@ -129,6 +131,7 @@
 
             <!--Incorrect firstname warning-->
             <TextView
+                android:id="@+id/firstnameWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_firstname"
@@ -164,6 +167,7 @@
 
             <!--Incorrect lastname warning-->
             <TextView
+                android:id="@+id/lastnameWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_lastname"
@@ -199,6 +203,7 @@
 
             <!--Incorrect phonenumber warning-->
             <TextView
+                android:id="@+id/phonenumberWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_phonenumber"
@@ -234,6 +239,7 @@
 
             <!--Incorrect password warning-->
             <TextView
+                android:id="@+id/passwordWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/incorrect_password"

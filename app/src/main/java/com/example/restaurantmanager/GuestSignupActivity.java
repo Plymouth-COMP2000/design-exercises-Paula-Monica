@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,18 @@ public class GuestSignupActivity extends AppCompatActivity {
     private EditText phonenumberInput;
     private EditText passwordInput;
     private Button signupButton;
+
+    private TextView emailWarning;
+
+    private TextView usernameWarning;
+
+    private TextView firstnameWarning;
+
+    private TextView lastnameWarning;
+
+    private TextView phonenumberWarning;
+
+    private TextView passwordWarning;
 
     private ImageView backArrow;
 
@@ -33,6 +46,11 @@ public class GuestSignupActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         signupButton = findViewById(R.id.signupButton);
         backArrow = findViewById(R.id.backArrow);
-
+        passwordWarning = findViewById(R.id.passwordWarning);
+        phonenumberWarning = findViewById(R.id.phonenumberWarning);
+        lastnameWarning = findViewById(R.id.lastnameWarning);
+        firstnameWarning = findViewById(R.id.firstnameWarning);
+        usernameWarning = findViewById(R.id.usernameWarning);
+        emailWarning = findViewById(R.id.emailWarning);
     }
 }
