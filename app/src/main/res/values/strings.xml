@@ -55,6 +55,7 @@
     <string name="no_of_ppl_warning"> Please select the number of people </string>
     <string name="date_warning"> Please select a valid date and ensure the format is dd/mm/yy </string>
     <string name="time_warning"> Please select a valid time and ensure the format is hh:mm </string>
+    <string name="edit_reservation_title"> Edit reservation: </string>
 
     <!-- Number of people options -->
     <string-array name="number_of_people_array">

@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_reservation_title"
+            android:text="@string/edit_reservation_title"
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -130,16 +130,15 @@
             android:textSize="15sp"
             android:textColor="#c66d6f"
             android:layout_marginBottom="35dp"
-            android:visibility="invisible"
-            />
+            android:visibility="invisible"/>
 
-        <!--Confirm button-->
+        <!--Save changes button-->
         <Button
-            android:id="@+id/confirmButton"
+            android:id="@+id/saveChangesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="280dp"
-            android:text="@string/confirm_btn"
+            android:text="@string/save_changes_btn"
             android:textSize="18sp"
             android:padding="16dp"
             android:textAllCaps="false"

@@ -48,6 +48,10 @@
             android:name=".GuestNewReservationActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".GuestEditReservationActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
