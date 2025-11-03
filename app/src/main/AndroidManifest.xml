@@ -56,6 +56,14 @@
             android:name=".MyReservationsActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".SuccessfulReservationActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".SuccessfulEditReservationActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

@@ -60,6 +60,7 @@
     <string name="edit_description">Edit reservation</string>
     <string name="delete_description">Delete reservation</string>
     <string name="successful_reservation">Reservation made successfully!</string>
+    <string name="successful_edit_reservation">Reservation edited successfully!</string>
 
     <!-- Number of people options -->
     <string-array name="number_of_people_array">
