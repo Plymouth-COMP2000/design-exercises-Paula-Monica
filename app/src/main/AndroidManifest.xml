@@ -52,6 +52,10 @@
             android:name=".GuestEditReservationActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".MyReservationsActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

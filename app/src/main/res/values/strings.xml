@@ -56,10 +56,10 @@
     <string name="date_warning"> Please select a valid date and ensure the format is dd/mm/yy </string>
     <string name="time_warning"> Please select a valid time and ensure the format is hh:mm </string>
     <string name="edit_reservation_title"> Edit reservation: </string>
-
     <string name="upcoming_reservations_title">Upcoming Reservations:</string>
     <string name="edit_description">Edit reservation</string>
     <string name="delete_description">Delete reservation</string>
+    <string name="successful_reservation">Reservation made successfully!</string>
 
     <!-- Number of people options -->
     <string-array name="number_of_people_array">
