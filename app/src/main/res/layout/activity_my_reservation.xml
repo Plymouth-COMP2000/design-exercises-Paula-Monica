@@ -1,219 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#c8d5d7"
-    android:padding="24dp">
+    android:fillViewport="true"
+    android:background="#c8d5d7">
 
-    <!--Back button-->
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/back_arrow"
-        android:contentDescription="@string/back_arrow_description"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginBottom="32dp"/>
-
-    <!--Page title-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/upcoming_reservations_title"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <!--Reservation Card 1-->
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/edittext_background"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#c8d5d7"
+        android:padding="24dp">
 
-        <!--Reservation details container-->
+        <!--Back button-->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_arrow"
+            android:contentDescription="@string/back_arrow_description"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginBottom="32dp"/>
+
+        <!--Page title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/upcoming_reservations_title"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!--Reservation Card 1-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
 
-            <!--Date-->
-            <TextView
-                android:layout_width="wrap_content"
+            <!--Reservation details container-->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Date"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <!--Time-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <!--Date-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
 
-            <!--Number of guests-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No. of guests"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <!--Time-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+                <!--Number of guests-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. of guests"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+            </LinearLayout>
+
+            <!--Edit button-->
+            <ImageView
+                android:id="@+id/editButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="@string/edit_description"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="8dp"/>
+
+            <!--Delete button-->
+            <ImageView
+                android:id="@+id/deleteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="@string/delete_description"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </LinearLayout>
 
-        <!--Edit button-->
-        <ImageView
-            android:id="@+id/editButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="@string/edit_description"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="8dp"/>
-
-        <!--Delete button-->
-        <ImageView
-            android:id="@+id/deleteButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_delete"
-            android:contentDescription="@string/delete_description"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-
-    </LinearLayout>
-
-    <!--Reservation Card 2-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/edittext_background"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
-
+        <!--Reservation Card 2-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Date"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No. of guests"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. of guests"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/editButton2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="@string/edit_description"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="8dp"/>
+
+            <ImageView
+                android:id="@+id/deleteButton2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="@string/delete_description"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/editButton2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="@string/edit_description"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="8dp"/>
-
-        <ImageView
-            android:id="@+id/deleteButton2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_delete"
-            android:contentDescription="@string/delete_description"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-
-    </LinearLayout>
-
-    <!--Reservation Card 3-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/edittext_background"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
-
+        <!--Reservation Card 3-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Date"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No. of guests"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:fontFamily="sans-serif"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No. of guests"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="sans-serif"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/editButton3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="@string/edit_description"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_marginEnd="8dp"/>
+
+            <ImageView
+                android:id="@+id/deleteButton3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="@string/delete_description"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/editButton3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="@string/edit_description"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_marginEnd="8dp"/>
-
-        <ImageView
-            android:id="@+id/deleteButton3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_delete"
-            android:contentDescription="@string/delete_description"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
