@@ -48,5 +48,26 @@
     <string name="hour_before_reminder">Hour before:</string>
     <string name="save_changes_btn">Save changes</string>
     <string name="toggle_notification">Toggle notification</string>
+    <string name="new_reservation_title">New reservation:</string>
+    <string name="number_of_people_label">Number of people:</string>
+    <string name="date_label">Date:</string>
+    <string name="time_label">Time:</string>
+    <string name="no_of_ppl_warning"> Please select the number of people </string>
+    <string name="date_warning"> Please select a valid date and ensure the format is dd/mm/yy </string>
+    <string name="time_warning"> Please select a valid time and ensure the format is hh:mm </string>
+
+    <!-- Number of people options -->
+    <string-array name="number_of_people_array">
+        <item>1 person</item>
+        <item>2 people</item>
+        <item>3 people</item>
+        <item>4 people</item>
+        <item>5 people</item>
+        <item>6 people</item>
+        <item>7 people</item>
+        <item>8 people</item>
+        <item>9 people</item>
+        <item>10+ people</item>
+    </string-array>
 
 </resources>

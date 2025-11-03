@@ -44,6 +44,10 @@
             android:name=".GuestChangeSettingsActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".GuestNewReservationActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
