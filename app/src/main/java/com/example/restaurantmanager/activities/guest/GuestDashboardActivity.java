@@ -1,9 +1,11 @@
-package com.example.restaurantmanager;
+package com.example.restaurantmanager.activities.guest;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.restaurantmanager.R;
 
 public class GuestDashboardActivity extends AppCompatActivity {
 

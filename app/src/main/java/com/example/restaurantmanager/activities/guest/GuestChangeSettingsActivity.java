@@ -1,4 +1,4 @@
-package com.example.restaurantmanager;
+package com.example.restaurantmanager.activities.guest;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,6 +7,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.restaurantmanager.R;
 
 public class GuestChangeSettingsActivity extends AppCompatActivity {
 

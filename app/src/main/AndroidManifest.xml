@@ -12,7 +12,7 @@
         android:theme="@style/Theme.RestaurantManager">
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activities.common.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,47 +21,47 @@
         </activity>
 
         <activity
-            android:name=".GuestSignupActivity"
+            android:name=".activities.guest.GuestSignupActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".SuccessfulSignupActivity"
+            android:name=".activities.common.SuccessfulSignupActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.guest.LoginActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".GuestDashboardActivity"
+            android:name=".activities.guest.GuestDashboardActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".GuestViewMenuActivity"
+            android:name=".activities.guest.GuestViewMenuActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".GuestChangeSettingsActivity"
+            android:name=".activities.guest.GuestChangeSettingsActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".GuestNewReservationActivity"
+            android:name=".activities.guest.GuestNewReservationActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".GuestEditReservationActivity"
+            android:name=".activities.guest.GuestEditReservationActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".MyReservationsActivity"
+            android:name=".activities.guest.MyReservationsActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".SuccessfulReservationActivity"
+            android:name=".activities.guest.SuccessfulReservationActivity"
             android:exported="true"/>
 
         <activity
-            android:name=".SuccessfulEditReservationActivity"
+            android:name=".activities.guest.SuccessfulEditReservationActivity"
             android:exported="true"/>
 
     </application>
