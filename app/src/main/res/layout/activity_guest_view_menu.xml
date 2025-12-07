@@ -37,248 +37,85 @@
             android:paddingEnd="20dp"
             android:drawableEnd="@android:drawable/ic_menu_search"
             android:inputType="text"
-            tools:ignore="Autofill" />
+            tools:ignore="Autofill,RtlSymmetry" />
 
     </LinearLayout>
 
-    <!--Scrollable menu content-->
-    <ScrollView
+    <!-- Category filter chips -->
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:background="#c8d5d7"
+        tools:ignore="RtlSymmetry">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <!--Starters Category-->
-            <TextView
+            <Button
+                android:id="@+id/btnAllItems"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
+                android:text="All"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnStarters"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:text="@string/starters_category"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
                 android:textColor="#000000"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"/>
+                style="?android:attr/borderlessButtonStyle" />
 
-            <!--Starter Item 1-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#94b1b6"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical">
-
-                <!--Item image-->
-                <ImageView
-                    android:id="@+id/starterItem1Image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:contentDescription="@string/menu_item_image"
-                    android:background="#808080"
-                    android:scaleType="centerCrop"/>
-
-                <!--Item name-->
-                <TextView
-                    android:id="@+id/starterItem1Name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/item_name"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="16dp"/>
-
-                <!--Price-->
-                <TextView
-                    android:id="@+id/starterItem1Price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="16dp"/>
-
-                <!--Expand button-->
-                <ImageButton
-                    android:id="@+id/starterItem1Expand"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/arrow_down_float"
-                    android:contentDescription="@string/expand_description"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
-
-            </LinearLayout>
-
-            <!--Starter Item 2-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#94b1b6"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:contentDescription="@string/menu_item_image"
-                    android:background="#808080"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/item_name"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/arrow_down_float"
-                    android:contentDescription="@string/expand_description"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
-
-            </LinearLayout>
-
-            <!--Pasta Category-->
-            <TextView
+            <Button
+                android:id="@+id/btnPasta"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:text="@string/pasta_category"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:backgroundTint="#94b1b6"
                 android:textColor="#000000"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"/>
-
-            <!--Pasta Item 1-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#94b1b6"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:contentDescription="@string/menu_item_image"
-                    android:background="#808080"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/item_name"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/arrow_down_float"
-                    android:contentDescription="@string/expand_description"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
-
-            </LinearLayout>
-
-            <!--Expanded Item Description (example)-->
-            <TextView
-                android:id="@+id/itemDescriptionBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/item_description_example"
-                android:textSize="16sp"
-                android:textColor="#666666"
-                android:padding="16dp"
-                android:background="#edc099"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-light"/>
-
-            <!--Pasta Item 2-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#94b1b6"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:contentDescription="@string/menu_item_image"
-                    android:background="#808080"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/item_name"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="16dp"/>
-
-                <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@android:drawable/arrow_down_float"
-                    android:contentDescription="@string/expand_description"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
-
-            </LinearLayout>
+                style="?android:attr/borderlessButtonStyle" />
 
         </LinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
+
+    <!--RecyclerView for dynamic menu items-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+    <!-- Empty state (shown when no items) -->
+    <TextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="No menu items found"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>
