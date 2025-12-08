@@ -45,7 +45,7 @@
             android:exported="true"/>
 
         <activity
-            android:name=".activities.guest.GuestNewReservationActivity"
+            android:name=".activities.guest.GuestMakeReservationActivity"
             android:exported="true"/>
 
         <activity

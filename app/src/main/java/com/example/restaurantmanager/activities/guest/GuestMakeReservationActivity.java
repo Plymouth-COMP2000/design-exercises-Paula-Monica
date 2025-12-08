@@ -14,18 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanager.R;
-import com.example.restaurantmanager.activities.guest.SuccessfulEditReservationActivity;
+import com.example.restaurantmanager.activities.guest.SuccessfulReservationActivity;
 import com.example.restaurantmanager.database.DatabaseHelper;
 import com.example.restaurantmanager.models.Reservation;
+import com.example.restaurantmanager.activities.utils.SessionManager;
 import java.util.Calendar;
 
 /**
- * GuestEditReservationActivity - Edit existing reservations
- * SOLID: Single Responsibility - handles reservation editing only
+ GuestMakeReservationActivity - Create new reservations
+ SOLID: Single Responsibility - handles reservation creation only
  */
-public class GuestEditReservationActivity extends AppCompatActivity {
+public class GuestMakeReservationActivity extends AppCompatActivity {
 
-    // UI Components (matching your XML IDs)
+    // UI Components
     private ImageView backButton;
     private Spinner numberOfPeopleSpinner;
     private EditText datePicker;
@@ -33,30 +34,29 @@ public class GuestEditReservationActivity extends AppCompatActivity {
     private TextView peopleWarning;
     private TextView dateWarning;
     private TextView timeWarning;
-    private Button saveChangesButton;
+    private Button confirmButton;
 
     // Data
     private DatabaseHelper databaseHelper;
-    private int reservationId;
+    private SessionManager sessionManager;
     private String selectedDate = "";
     private String selectedTime = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_reservation);
+        setContentView(R.layout.activity_guest_make_reservation);
 
         // Initialize
         databaseHelper = DatabaseHelper.getInstance(this);
+        sessionManager = SessionManager.getInstance(this);
 
         initializeViews();
         setupSpinner();
-        loadReservationData();
         setupListeners();
     }
 
     //Initialize view references
-
     private void initializeViews() {
         backButton = findViewById(R.id.backButton);
         numberOfPeopleSpinner = findViewById(R.id.numberOfPeopleSpinner);
@@ -65,7 +65,7 @@ public class GuestEditReservationActivity extends AppCompatActivity {
         peopleWarning = findViewById(R.id.peopleWarning);
         dateWarning = findViewById(R.id.dateWarning);
         timeWarning = findViewById(R.id.timeWarning);
-        saveChangesButton = findViewById(R.id.saveChangesButton);
+        confirmButton = findViewById(R.id.confirmButton);
 
         // Make date and time pickers non-editable
         datePicker.setFocusable(false);
@@ -80,6 +80,7 @@ public class GuestEditReservationActivity extends AppCompatActivity {
     }
 
     //Set up number of people spinner
+
     private void setupSpinner() {
         // Create array of guest counts (1-20)
         String[] guestCounts = new String[20];
@@ -96,28 +97,7 @@ public class GuestEditReservationActivity extends AppCompatActivity {
         numberOfPeopleSpinner.setAdapter(adapter);
     }
 
-    //Load existing reservation data from intent
-    private void loadReservationData() {
-        Intent intent = getIntent();
-        reservationId = intent.getIntExtra("reservation_id", -1);
-        selectedDate = intent.getStringExtra("reservation_date");
-        selectedTime = intent.getStringExtra("reservation_time");
-        int numberOfGuests = intent.getIntExtra("reservation_guests", 1);
-
-        // Set values in UI
-        if (selectedDate != null && !selectedDate.isEmpty()) {
-            datePicker.setText(selectedDate);
-        }
-
-        if (selectedTime != null && !selectedTime.isEmpty()) {
-            timePicker.setText(selectedTime);
-        }
-
-        // Set spinner to correct position
-        numberOfPeopleSpinner.setSelection(numberOfGuests - 1);
-    }
-
-    //Set up button
+    //Set up button listeners
 
     private void setupListeners() {
         // Back button
@@ -129,70 +109,56 @@ public class GuestEditReservationActivity extends AppCompatActivity {
         // Time picker
         timePicker.setOnClickListener(v -> showTimePicker());
 
-        // Save changes
-        saveChangesButton.setOnClickListener(v -> saveChanges());
+        // Confirm reservation
+        confirmButton.setOnClickListener(v -> confirmReservation());
     }
 
     //Show date picker dialog
+
     private void showDatePicker() {
         Calendar calendar = Calendar.getInstance();
-
-        // If date already selected, parse it for initial value
-        if (!selectedDate.isEmpty()) {
-            String[] parts = selectedDate.split("-");
-            if (parts.length == 3) {
-                calendar.set(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]) - 1, Integer.parseInt(parts[2]));
-            }
-        }
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 (view, selectedYear, selectedMonth, selectedDay) -> {
+                    // Format: 2025-12-25
                     selectedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
                     datePicker.setText(selectedDate);
-                    dateWarning.setVisibility(View.INVISIBLE);
+                    dateWarning.setVisibility(View.INVISIBLE); // Hide warning when date selected
                 },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                year, month, day
         );
 
+        // Don't allow past dates
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
 
     //Show time picker dialog
-
     private void showTimePicker() {
         Calendar calendar = Calendar.getInstance();
-
-        // If time already selected, parse it for initial value
-        if (!selectedTime.isEmpty()) {
-            String[] parts = selectedTime.split(":");
-            if (parts.length == 2) {
-                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
-                calendar.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
-            }
-        }
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 this,
                 (view, selectedHour, selectedMinute) -> {
+                    // Format: 19:30
                     selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute);
                     timePicker.setText(selectedTime);
-                    timeWarning.setVisibility(View.INVISIBLE);
+                    timeWarning.setVisibility(View.INVISIBLE); // Hide warning when time selected
                 },
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
+                hour, minute, true // 24-hour format
         );
 
         timePickerDialog.show();
     }
 
-    //Validate and save changes
-
-    private void saveChanges() {
+    //Validate inputs and create reservation
+    private void confirmReservation() {
         boolean isValid = true;
 
         // Validate number of guests
@@ -220,43 +186,42 @@ public class GuestEditReservationActivity extends AppCompatActivity {
             timeWarning.setVisibility(View.INVISIBLE);
         }
 
+        // If validation fails, stop here
         if (!isValid) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Get existing reservation to preserve guest username and status
-        Reservation existingReservation = databaseHelper.getReservationById(reservationId);
-        if (existingReservation == null) {
-            Toast.makeText(this, "Reservation not found", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
+        // Get logged in username
+        String username = sessionManager.getUsername();
+        if (username == null || username.isEmpty()) {
+            // Fallback for testing
+            username = "guest_user";
         }
 
-        // Create updated reservation
-        Reservation updatedReservation = new Reservation(
-                reservationId,
-                existingReservation.getGuestUsername(),
+        // Create reservation object
+        Reservation reservation = new Reservation(
+                username,
                 selectedDate,
                 selectedTime,
                 numberOfGuests,
-                existingReservation.getStatus()
+                "confirmed" // Default status
         );
 
-        // Update in database
-        int result = databaseHelper.updateReservation(updatedReservation);
+        // Save to database
+        long result = databaseHelper.addReservation(reservation);
 
-        if (result > 0) {
+        if (result != -1) {
             // Success - go to confirmation screen
-            Intent intent = new Intent(this, SuccessfulEditReservationActivity.class);
+            Intent intent = new Intent(this, SuccessfulReservationActivity.class);
             intent.putExtra("reservation_date", selectedDate);
             intent.putExtra("reservation_time", selectedTime);
             intent.putExtra("reservation_guests", numberOfGuests);
             startActivity(intent);
-            finish();
+            finish(); // Close this activity
         } else {
             // Error
-            Toast.makeText(this, "Failed to update reservation. Please try again.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Failed to create reservation. Please try again.", Toast.LENGTH_LONG).show();
         }
     }
 }

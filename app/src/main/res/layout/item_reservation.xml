@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/edittext_background"
+    android:padding="16dp"
+    android:layout_marginBottom="16dp"
+    android:gravity="center_vertical">
+
+    <!--Reservation details container-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!--Date-->
+        <TextView
+            android:id="@+id/reservationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: 2025-12-25"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif"/>
+
+        <!--Time-->
+        <TextView
+            android:id="@+id/reservationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: 19:00"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="4dp"/>
+
+        <!--Number of guests-->
+        <TextView
+            android:id="@+id/reservationGuests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guests: 4"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="4dp"/>
+
+        <!--Status-->
+        <TextView
+            android:id="@+id/reservationStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: Confirmed"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <!--Edit icon button-->
+    <ImageView
+        android:id="@+id/editReservationButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_edit"
+        android:contentDescription="@string/edit_description"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="8dp"/>
+
+    <!--Delete/Cancel icon button-->
+    <ImageView
+        android:id="@+id/cancelReservationButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="@string/delete_description"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+</LinearLayout>
