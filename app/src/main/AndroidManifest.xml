@@ -29,7 +29,7 @@
             android:exported="true"/>
 
         <activity
-            android:name=".activities.guest.LoginActivity"
+            android:name=".activities.common.LoginActivity"
             android:exported="true"/>
 
         <activity

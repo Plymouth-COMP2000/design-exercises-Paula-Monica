@@ -1,4 +1,4 @@
-package com.example.restaurantmanager.activities.guest;
+package com.example.restaurantmanager.activities.common;
 
 import android.os.Bundle;
 import android.widget.Button;
