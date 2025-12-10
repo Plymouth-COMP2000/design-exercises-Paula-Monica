@@ -96,11 +96,11 @@ public class StaffDashboardActivity extends AppCompatActivity {
             //startActivity(intent);
        // });
 
-        // Manage reservations button
-        //manageReservationsButton.setOnClickListener(v -> {
-            //Intent intent = new Intent(this, StaffManageReservationsActivity.class);
-            //startActivity(intent);
-       // });
+        //Manage reservations button
+        manageReservationsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StaffManageReservationsActivity.class);
+            startActivity(intent);
+        });
 
         // Manage menu button
        // manageMenuButton.setOnClickListener(v -> {
@@ -114,18 +114,34 @@ public class StaffDashboardActivity extends AppCompatActivity {
      Design Pattern: Data access through DatabaseHelper (Singleton)
      */
     private void loadDashboardData() {
-        // Get today's date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
-        String todayDate = dateFormat.format(new Date());
+        // Get today's date in YYYY-MM-DD format
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
+        String todayDate = dbDateFormat.format(new Date());
 
-        // Get today's reservations count
+        android.util.Log.d("StaffDashboard", "Today's date (YYYY-MM-DD): " + todayDate);
+
+        // Get today's reservations count (excluding cancelled)
         List<Reservation> allReservations = databaseHelper.getAllReservations();
+        android.util.Log.d("StaffDashboard", "Total reservations: " + allReservations.size());
+
         int todayCount = 0;
         for (Reservation reservation : allReservations) {
-            if (reservation.getDate().equals(todayDate)) {
+            //Only count if date matches AND status is not cancelled
+            boolean isToday = reservation.getDate().equals(todayDate);
+            boolean isNotCancelled = !reservation.getStatus().equalsIgnoreCase("Cancelled");
+
+            android.util.Log.d("StaffDashboard", "Guest: " + reservation.getGuestUsername() +
+                    ", Date: " + reservation.getDate() +
+                    ", Status: " + reservation.getStatus() +
+                    ", IsToday: " + isToday +
+                    ", NotCancelled: " + isNotCancelled);
+
+            if (isToday && isNotCancelled) {
                 todayCount++;
             }
         }
+
+        android.util.Log.d("StaffDashboard", "Today's ACTIVE count: " + todayCount);
         todayReservationsCount.setText(String.valueOf(todayCount));
 
         // Get total menu items count

@@ -73,6 +73,10 @@
             android:name=".activities.staff.StaffDashboardActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".activities.staff.StaffManageReservationsActivity"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

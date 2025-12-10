@@ -85,7 +85,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:layout_marginBottom="32dp"/>
 
-            <!--Quick Stats Card-->
+            <!--Quick Stats Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
