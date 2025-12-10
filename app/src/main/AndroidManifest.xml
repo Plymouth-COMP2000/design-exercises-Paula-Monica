@@ -69,6 +69,10 @@
             android:name=".activities.guest.SuccessfulEditReservationActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".activities.staff.StaffDashboardActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.activities.guest.GuestDashboardActivity;
+import com.example.restaurantmanager.activities.staff.StaffDashboardActivity;
 import com.example.restaurantmanager.api.ApiService;
 import com.example.restaurantmanager.models.User;
 import com.example.restaurantmanager.activities.utils.SessionManager;
@@ -159,20 +160,17 @@ public class LoginActivity extends AppCompatActivity {
      Design Pattern: Factory-like routing
      */
     private void routeToCorrectDashboard(String userType) {
-        Intent intent;
-
         if (userType.equalsIgnoreCase("staff")) {
-            // TODO: Create StaffDashboardActivity in Phase 5
+
             Toast.makeText(this, "Staff dashboard", Toast.LENGTH_SHORT).show();
-            sessionManager.logout();
+
+            Intent intent = new Intent(this, StaffDashboardActivity.class);
+            startActivity(intent);
             return;
-
-
-        } else {
-            // Guest user
-            intent = new Intent(this, GuestDashboardActivity.class);
         }
 
+        // Guest user
+        Intent intent = new Intent(this, GuestDashboardActivity.class);
         startActivity(intent);
     }
 }
