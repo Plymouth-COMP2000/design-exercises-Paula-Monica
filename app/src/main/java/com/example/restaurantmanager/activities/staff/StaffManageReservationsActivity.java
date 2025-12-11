@@ -38,6 +38,7 @@ public class StaffManageReservationsActivity extends AppCompatActivity
     private Button btnUpcomingReservations;
     private RecyclerView reservationsRecyclerView;
     private TextView emptyStateText;
+    private Button btnCleanupCancelled;
 
     // Services
     private DatabaseHelper databaseHelper;
@@ -75,6 +76,7 @@ public class StaffManageReservationsActivity extends AppCompatActivity
         btnUpcomingReservations = findViewById(R.id.btnUpcomingReservations);
         reservationsRecyclerView = findViewById(R.id.reservationsRecyclerView);
         emptyStateText = findViewById(R.id.emptyStateText);
+        btnCleanupCancelled = findViewById(R.id.btnCleanupCancelled);
     }
 
     /**
@@ -91,6 +93,8 @@ public class StaffManageReservationsActivity extends AppCompatActivity
     private void setupListeners() {
         // Back button
         backArrow.setOnClickListener(v -> finish());
+        // Clean up button
+        btnCleanupCancelled.setOnClickListener(v -> showCleanupDialog());
 
         // Search functionality
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -105,6 +109,8 @@ public class StaffManageReservationsActivity extends AppCompatActivity
 
             @Override
             public void afterTextChanged(Editable s) {}
+
+
         });
 
         // Filter buttons
@@ -258,5 +264,63 @@ public class StaffManageReservationsActivity extends AppCompatActivity
         super.onResume();
         loadReservations();
         applyFilter(currentFilter);
+    }
+
+    //Show confirmation dialog for cleaning up cancelled reservations
+    private void showCleanupDialog() {
+        // Count cancelled reservations
+        List<Reservation> allReservations = databaseHelper.getAllReservations();
+        int cancelledCount = 0;
+        for (Reservation reservation : allReservations) {
+            if (reservation.getStatus().equalsIgnoreCase("Cancelled")) {
+                cancelledCount++;
+            }
+        }
+
+        if (cancelledCount == 0) {
+            Toast.makeText(this, "No cancelled reservations to clean up",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Show confirmation dialog
+        new AlertDialog.Builder(this)
+                .setTitle("Clean Up Cancelled Reservations")
+                .setMessage("This will permanently delete " + cancelledCount +
+                        " cancelled reservation(s). This cannot be undone.\n\n" +
+                        "Are you sure you want to continue?")
+                .setPositiveButton("Yes, Delete", (dialog, which) -> performCleanup())
+                .setNegativeButton("Cancel", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    /**
+     Perform the cleanup of cancelled reservations
+     Design Pattern: Data access via Singleton DatabaseHelper
+     SOLID: Single Responsibility - handles cleanup logic
+     */
+    private void performCleanup() {
+        List<Reservation> allReservations = databaseHelper.getAllReservations();
+        int deletedCount = 0;
+
+        // Delete all cancelled reservations
+        for (Reservation reservation : allReservations) {
+            if (reservation.getStatus().equalsIgnoreCase("Cancelled")) {
+                databaseHelper.deleteReservation(reservation.getId());
+                deletedCount++;
+            }
+        }
+
+        // Show success message
+        Toast.makeText(this,
+                "Successfully deleted " + deletedCount + " cancelled reservation(s)",
+                Toast.LENGTH_LONG).show();
+
+        // Reload the list
+        loadReservations();
+        applyFilter(currentFilter);
+
+        android.util.Log.d("StaffManageRes", "Cleaned up " + deletedCount + " cancelled reservations");
     }
 }

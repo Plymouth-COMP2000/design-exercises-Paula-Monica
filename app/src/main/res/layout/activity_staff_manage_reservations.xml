@@ -100,7 +100,21 @@
                 android:textSize="14sp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <!-- Cleanup button -->
+            <Button
+                android:id="@+id/btnCleanupCancelled"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="🗑️ Clean Up"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:backgroundTint="#e5a975"
                 android:textColor="#000000"
                 style="?android:attr/borderlessButtonStyle" />
 
