@@ -102,11 +102,11 @@ public class StaffDashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Manage menu button
-       // manageMenuButton.setOnClickListener(v -> {
-           // Intent intent = new Intent(this, StaffManageMenuActivity.class);
-            //startActivity(intent);
-        //});
+        manageMenuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StaffManageMenuActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     /**

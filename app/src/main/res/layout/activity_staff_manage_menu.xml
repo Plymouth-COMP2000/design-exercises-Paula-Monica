@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#c8d5d7">
+
+    <!--Top bar with back button-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#c8d5d7">
+
+        <!--Back btn-->
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_arrow"
+            android:contentDescription="@string/back_arrow_description"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp"/>
+
+        <!--Title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Menu"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="16dp"/>
+
+        <!--Add new item button-->
+        <Button
+            android:id="@+id/addNewItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+ Add New Menu Item"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:textAllCaps="false"
+            android:backgroundTint="#e5a975"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-medium"/>
+
+    </LinearLayout>
+
+    <!--RecyclerView for menu items-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+    <!--Empty state-->
+    <TextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="No menu items yet.\nTap '+' to add your first item"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -14,9 +14,9 @@ import com.example.restaurantmanager.models.MenuItem;
 import java.util.List;
 
 /**
-MenuAdapter - Adapter Pattern Implementation
-Converts MenuItem data into RecyclerView items with expandable descriptions
-SOLID: Single Responsibility - Only handles menu item display
+ MenuAdapter - Adapter Pattern Implementation
+ Converts MenuItem data into RecyclerView items with expandable descriptions
+ SOLID: Single Responsibility - Only handles menu item display
  */
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
 
@@ -60,6 +60,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 holder.expandButton.setRotation(0); // Rotate arrow down
             }
         });
+
+        // Also expand/collapse when clicking the whole item row
+        holder.itemView.setOnClickListener(v -> holder.expandButton.performClick());
     }
 
     @Override
@@ -67,14 +70,17 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         return menuItems.size();
     }
 
-    //Update the menu items list (for search/filter functionality)
+    /**
+     Update the menu items list (for search/filter functionality)
+     */
     public void updateMenuItems(List<MenuItem> newMenuItems) {
         this.menuItems = newMenuItems;
         notifyDataSetChanged();
     }
 
-    //ViewHolder - holds references to views for each item
-
+    /**
+     ViewHolder - holds references to views for each item
+     */
     public static class MenuViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView nameTextView;
