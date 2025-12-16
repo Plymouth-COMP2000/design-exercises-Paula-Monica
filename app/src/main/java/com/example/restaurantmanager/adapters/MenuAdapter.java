@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.models.MenuItem;
+
+import java.io.File;
 import java.util.List;
+
 
 /**
  MenuAdapter - Adapter Pattern Implementation
@@ -43,6 +46,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         holder.nameTextView.setText(item.getName());
         holder.priceTextView.setText(String.format("£%.2f", item.getPrice()));
         holder.descriptionTextView.setText(item.getDescription());
+
+        // Load real image
+        loadMenuItemImage(holder.menuItemImage, item.getImageUrl());
 
         // Initially hide description
         holder.descriptionTextView.setVisibility(View.GONE);
@@ -82,7 +88,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
      ViewHolder - holds references to views for each item
      */
     public static class MenuViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView menuItemImage;
         TextView nameTextView;
         TextView priceTextView;
         TextView descriptionTextView;
@@ -91,11 +97,32 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
         public MenuViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.menuItemImage);
+            menuItemImage = itemView.findViewById(R.id.menuItemImage);
             nameTextView = itemView.findViewById(R.id.menuItemName);
             priceTextView = itemView.findViewById(R.id.menuItemPrice);
             descriptionTextView = itemView.findViewById(R.id.menuItemDescription);
             expandButton = itemView.findViewById(R.id.expandButton);
+        }
+    }
+
+    private void loadMenuItemImage(ImageView imageView, String imagePath) {
+
+        // Keep placeholder if no image
+        if (imagePath == null || imagePath.isEmpty() || imagePath.equals("placeholder")) {
+            return;
+        }
+
+        try {
+            File imageFile = new File(imagePath);
+            if (imageFile.exists()) {
+                android.graphics.Bitmap bitmap =
+                        android.graphics.BitmapFactory.decodeFile(imagePath);
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap);
+                }
+            }
+        } catch (Exception e) {
+            android.util.Log.e("MenuAdapter", "Error loading image: " + e.getMessage());
         }
     }
 }
