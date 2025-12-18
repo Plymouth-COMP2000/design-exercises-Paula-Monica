@@ -76,4 +76,16 @@
         <item>10+ people</item>
     </string-array>
 
+    <!-- Staff Authentication Code Screen -->
+    <string name="staff_auth_title">Staff Authentication</string>
+    <string name="staff_auth_instructions">Please enter the staff authentication code provided by your manager to proceed with registration.</string>
+    <string name="staff_code_label">Staff Code</string>
+    <string name="staff_code_hint">Enter code</string>
+    <string name="incorrect_staff_code">Invalid staff code</string>
+    <string name="verify_code_btn">Verify Code</string>
+    <string name="back_to_login_link">Back to Login</string>
+    <string name="staff_code_required">Staff authentication code is required</string>
+    <string name="staff_signup_title"> Staff Sign-up </string>
+
+
 </resources>

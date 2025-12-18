@@ -93,6 +93,14 @@
             android:name=".activities.staff.StaffAddEditMenuItemActivity"
             android:exported="false"/>
 
+        <activity
+            android:name=".activities.staff.StaffAuthCodeActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activities.staff.StaffSignupActivity"
+            android:exported="false"/>
+
         <!-- FileProvider for camera photos -->
         <provider
             android:name="androidx.core.content.FileProvider"

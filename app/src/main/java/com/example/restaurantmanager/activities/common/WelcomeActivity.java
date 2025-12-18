@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.activities.guest.GuestSignupActivity;
+import com.example.restaurantmanager.activities.staff.StaffAuthCodeActivity;
+import com.example.restaurantmanager.activities.staff.StaffSignupActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -35,10 +37,17 @@ public class WelcomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Login button
+        // Guest make account button
         guestAccountButton.setOnClickListener(v -> {
             Intent intent = new Intent(WelcomeActivity.this, GuestSignupActivity.class);
             startActivity(intent);
         });
+
+        // Staff make account button
+        staffCreateAccountButton.setOnClickListener(v -> {
+            Intent intent = new Intent(WelcomeActivity.this, StaffAuthCodeActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
