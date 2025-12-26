@@ -91,10 +91,10 @@ public class StaffDashboardActivity extends AppCompatActivity {
         signOutButton.setOnClickListener(v -> showSignOutDialog());
 
         // Settings button
-        //settingsButton.setOnClickListener(v -> {
-            //Intent intent = new Intent(this, StaffSettingsActivity.class);
-            //startActivity(intent);
-       // });
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StaffSettingsActivity.class);
+            startActivity(intent);
+        });
 
         //Manage reservations button
         manageReservationsButton.setOnClickListener(v -> {

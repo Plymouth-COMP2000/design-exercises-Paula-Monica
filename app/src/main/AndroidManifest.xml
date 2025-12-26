@@ -8,6 +8,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -54,10 +55,6 @@
             android:exported="true"/>
 
         <activity
-            android:name=".activities.guest.GuestChangeSettingsActivity"
-            android:exported="true"/>
-
-        <activity
             android:name=".activities.guest.GuestMakeReservationActivity"
             android:exported="true"/>
 
@@ -100,6 +97,18 @@
         <activity
             android:name=".activities.staff.StaffSignupActivity"
             android:exported="false"/>
+
+        <activity
+            android:name=".activities.guest.GuestChangeSettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".activities.guest.GuestDashboardActivity" />
+
+        <activity
+            android:name=".activities.staff.StaffSettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".activities.staff.StaffDashboardActivity" />
 
         <!-- FileProvider for camera photos -->
         <provider

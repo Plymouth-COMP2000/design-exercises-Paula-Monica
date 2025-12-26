@@ -1,10 +1,14 @@
 package com.example.restaurantmanager.activities.common;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.activities.guest.GuestSignupActivity;
@@ -17,6 +21,19 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button guestAccountButton;
     private Button staffCreateAccountButton;
 
+
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+
+                // Request permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +44,8 @@ public class WelcomeActivity extends AppCompatActivity {
         staffCreateAccountButton = findViewById(R.id.staffCreateAccountButton);
 
         setupListeners();
+        // Request notification permission
+        requestNotificationPermission();
     }
 
     private void setupListeners() {
@@ -48,6 +67,7 @@ public class WelcomeActivity extends AppCompatActivity {
             Intent intent = new Intent(WelcomeActivity.this, StaffAuthCodeActivity.class);
             startActivity(intent);
         });
+
 
     }
 }

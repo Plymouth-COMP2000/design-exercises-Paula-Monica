@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.activities.guest.SuccessfulEditReservationActivity;
+import com.example.restaurantmanager.activities.utils.NotificationHelper;
 import com.example.restaurantmanager.database.DatabaseHelper;
 import com.example.restaurantmanager.models.Reservation;
 import java.util.Calendar;
@@ -247,6 +248,9 @@ public class GuestEditReservationActivity extends AppCompatActivity {
         int result = databaseHelper.updateReservation(updatedReservation);
 
         if (result > 0) {
+            NotificationHelper notificationHelper = NotificationHelper.getInstance(this);
+            notificationHelper.sendStaffReservationChanged(updatedReservation);
+
             // Success - go to confirmation screen
             Intent intent = new Intent(this, SuccessfulEditReservationActivity.class);
             intent.putExtra("reservation_date", selectedDate);

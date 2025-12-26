@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restaurantmanager.R;
 import com.example.restaurantmanager.activities.guest.SuccessfulReservationActivity;
+import com.example.restaurantmanager.activities.utils.NotificationHelper;
 import com.example.restaurantmanager.database.DatabaseHelper;
 import com.example.restaurantmanager.models.Reservation;
 import com.example.restaurantmanager.activities.utils.SessionManager;
@@ -212,13 +213,27 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
         long result = databaseHelper.addReservation(reservation);
 
         if (result != -1) {
+            // Create reservation object with ID for notification
+            Reservation newReservation = new Reservation(
+                    (int) result,
+                    username,
+                    selectedDate,
+                    selectedTime,
+                    numberOfGuests,
+                    "confirmed"
+            );
+
+            // SEND NOTIFICATION TO ALL STAFF
+            NotificationHelper notificationHelper = NotificationHelper.getInstance(this);
+            notificationHelper.sendStaffNewReservation(newReservation);
+
             // Success - go to confirmation screen
             Intent intent = new Intent(this, SuccessfulReservationActivity.class);
             intent.putExtra("reservation_date", selectedDate);
             intent.putExtra("reservation_time", selectedTime);
             intent.putExtra("reservation_guests", numberOfGuests);
             startActivity(intent);
-            finish(); // Close this activity
+            finish();
         } else {
             // Error
             Toast.makeText(this, "Failed to create reservation. Please try again.", Toast.LENGTH_LONG).show();

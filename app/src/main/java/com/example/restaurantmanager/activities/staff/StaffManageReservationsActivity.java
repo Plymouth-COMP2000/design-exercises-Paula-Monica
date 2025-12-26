@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restaurantmanager.R;
+import com.example.restaurantmanager.activities.utils.NotificationHelper;
 import com.example.restaurantmanager.adapters.StaffReservationsAdapter;
 import com.example.restaurantmanager.database.DatabaseHelper;
 import com.example.restaurantmanager.models.Reservation;
@@ -243,8 +244,18 @@ public class StaffManageReservationsActivity extends AppCompatActivity
                         Toast.makeText(this, "Reservation cancelled successfully",
                                 Toast.LENGTH_SHORT).show();
 
-                        // TODO Phase 7: Send notification to guest
-                        // NotificationHelper.sendReservationCancelled(reservation);
+                        if (result > 0) {
+                            Toast.makeText(this, "Reservation cancelled successfully",
+                                    Toast.LENGTH_SHORT).show();
+
+                            // SEND NOTIFICATION TO GUEST
+                            NotificationHelper notificationHelper = NotificationHelper.getInstance(this);
+                            notificationHelper.sendGuestReservationCancelled(reservation);
+
+                            // Reload data
+                            loadReservations();
+                            applyFilter(currentFilter);
+                        }
 
                         // Reload data
                         loadReservations();

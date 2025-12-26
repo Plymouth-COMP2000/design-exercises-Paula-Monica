@@ -1,5 +1,6 @@
 package com.example.restaurantmanager.activities.guest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -87,9 +88,11 @@ public class MyReservationsActivity extends AppCompatActivity implements Reserva
     //Set up button
 
     private void setupListeners() {
-        backButton.setOnClickListener(v -> finish());
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GuestDashboardActivity.class);
+            startActivity(intent);
+        });
     }
-
     //Handle reservation deletion
 
     @Override

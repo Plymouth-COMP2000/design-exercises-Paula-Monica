@@ -59,6 +59,28 @@ public class GuestDashboardActivity extends AppCompatActivity {
     private void setupListeners() {
         // Sign out button
         signOutButton.setOnClickListener(v -> showSignOutDialog());
+        //Settings btn
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GuestChangeSettingsActivity.class);
+            startActivity(intent);
+        });
+        //Make reservation btn
+        makeReservationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GuestMakeReservationActivity.class);
+            startActivity(intent);
+        });
+
+        //My reservation btn
+        myReservationsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MyReservationsActivity.class);
+            startActivity(intent);
+        });
+
+        //View menu btn
+        viewMenuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GuestViewMenuActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void performSignOut() {
