@@ -66,7 +66,7 @@ public class StaffSignupActivity extends AppCompatActivity {
     private ApiService apiService;
 
     // Validation constants
-    private static final int MIN_PASSWORD_LENGTH = 6;
+    private static final int MIN_PASSWORD_LENGTH = 8;
     private static final int MIN_USERNAME_LENGTH = 3;
     private static final int MIN_CONTACT_LENGTH = 10;
 
@@ -217,13 +217,10 @@ public class StaffSignupActivity extends AppCompatActivity {
             isValid = false;
         }
 
-        // Validate password
-        if (TextUtils.isEmpty(password)) {
-            passwordWarning.setText("Password is required");
-            passwordWarning.setVisibility(View.VISIBLE);
-            isValid = false;
-        } else if (password.length() < MIN_PASSWORD_LENGTH) {
-            passwordWarning.setText("Password must be at least " + MIN_PASSWORD_LENGTH + " characters");
+        // Validate password with enhanced security requirements
+        String passwordError = validatePassword(password);
+        if (passwordError != null) {
+            passwordWarning.setText(passwordError);
             passwordWarning.setVisibility(View.VISIBLE);
             isValid = false;
         }
@@ -359,5 +356,63 @@ public class StaffSignupActivity extends AppCompatActivity {
             signupButton.setEnabled(true);
             signupButton.setText("Sign Up");
         }
+    }
+
+    /**
+     Validate password with comprehensive security requirements
+     Security: Implements industry-standard password complexity rules
+     HCI: Provides clear, specific error messages for user guidance
+
+     Password must contain:
+     - At least 8 characters
+     - At least one uppercase letter
+     - At least one lowercase letter
+     - At least one digit
+     - At least one special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+
+     @param password The password to validate
+     @return Error message if invalid, null if valid
+     */
+    private String validatePassword(String password) {
+        // Check if password is empty
+        if (TextUtils.isEmpty(password)) {
+            return "Password is required";
+        }
+
+        // Check minimum length
+        if (password.length() < MIN_PASSWORD_LENGTH) {
+            return "Password must be at least " + MIN_PASSWORD_LENGTH + " characters";
+        }
+
+        // Check for at least one uppercase letter
+        if (!password.matches(".*[A-Z].*")) {
+            return "Password must contain at least one uppercase letter";
+        }
+
+        // Check for at least one lowercase letter
+        if (!password.matches(".*[a-z].*")) {
+            return "Password must contain at least one lowercase letter";
+        }
+
+        // Check for at least one digit
+        if (!password.matches(".*\\d.*")) {
+            return "Password must contain at least one number";
+        }
+
+        // Check for at least one special character
+        if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{}|;:,.<>?].*")) {
+            return "Password must contain at least one special character (!@#$%^&*()_+-=[]{}|;:,.<>?)";
+        }
+
+        // Check for common weak passwords
+        String lowerPassword = password.toLowerCase();
+        if (lowerPassword.contains("password") ||
+                lowerPassword.contains("123456") ||
+                lowerPassword.contains("qwerty")) {
+            return "Password is too common. Please choose a stronger password";
+        }
+
+        // Password is valid
+        return null;
     }
 }

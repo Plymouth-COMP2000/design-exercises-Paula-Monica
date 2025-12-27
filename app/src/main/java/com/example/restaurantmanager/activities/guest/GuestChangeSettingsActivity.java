@@ -203,47 +203,64 @@ public class GuestChangeSettingsActivity extends AppCompatActivity {
         notificationPreferences.setGuestDayBeforeEnabled(dayBeforeEnabled);
         notificationPreferences.setGuestHourBeforeEnabled(hourBeforeEnabled);
 
-        // Get current username and password (password remains unchanged)
         String username = sessionManager.getUsername();
 
-        // Create updated user object (password fetched during loadUserData)
-        // For now, we'll need to fetch the current password first
-        apiService.loginUser(username, "", new ApiService.UserCallback() {
-            @Override
-            public void onSuccess(User currentUser) {
-                // Create updated user with new details but same password
-                User updatedUser = new User(
-                        username,
-                        currentUser.getPassword(), // Keep existing password
-                        firstName,
-                        lastName,
-                        email,
-                        phone,
-                        "guest"
-                );
+        //Fetch user without password check
+        String readUrl = "http://10.240.72.69/comp2000/coursework/read_user/10921081/" + username;
 
-                // Update user via API (runs on worker thread)
-                apiService.updateUser(username, updatedUser, new ApiService.ApiCallback() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Toast.makeText(GuestChangeSettingsActivity.this,
-                                "Settings saved successfully", Toast.LENGTH_SHORT).show();
-                        finish();
+        JsonObjectRequest readRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                readUrl,
+                null,
+                response -> {
+                    try {
+                        JSONObject userJson = response.getJSONObject("user");
+                        String currentPassword = userJson.getString("password");
+
+                        // Create updated user JSON
+                        JSONObject updateJson = new JSONObject();
+                        updateJson.put("username", username);
+                        updateJson.put("password", currentPassword); // Keep existing password
+                        updateJson.put("firstname", firstName);
+                        updateJson.put("lastname", lastName);
+                        updateJson.put("email", email);
+                        updateJson.put("contact", phone);
+                        updateJson.put("usertype", "guest");
+
+                        // Update the user
+                        String updateUrl = "http://10.240.72.69/comp2000/coursework/update_user/10921081/" + username;
+
+                        JsonObjectRequest updateRequest = new JsonObjectRequest(
+                                Request.Method.PUT,
+                                updateUrl,
+                                updateJson,
+                                updateResponse -> {
+                                    Toast.makeText(this, "Settings saved successfully", Toast.LENGTH_SHORT).show();
+                                    Log.d("GuestSettings", "User updated successfully");
+                                    finish();
+                                },
+                                error -> {
+                                    Toast.makeText(this, "Failed to save settings", Toast.LENGTH_LONG).show();
+                                    Log.e("GuestSettings", "Update error: " + error.getMessage());
+                                }
+                        );
+
+                        RequestQueue updateQueue = Volley.newRequestQueue(this);
+                        updateQueue.add(updateRequest);
+
+                    } catch (JSONException e) {
+                        Toast.makeText(this, "Error processing user data", Toast.LENGTH_SHORT).show();
+                        Log.e("GuestSettings", "JSON error: " + e.getMessage());
                     }
+                },
+                error -> {
+                    Toast.makeText(this, "Could not retrieve current user data", Toast.LENGTH_SHORT).show();
+                    Log.e("GuestSettings", "Read error: " + error.getMessage());
+                }
+        );
 
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(GuestChangeSettingsActivity.this,
-                                "Failed to save settings: " + error, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onError(String error) {
-                Toast.makeText(GuestChangeSettingsActivity.this,
-                        "Could not retrieve current user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+        RequestQueue readQueue = Volley.newRequestQueue(this);
+        readQueue.add(readRequest);
     }
+
 }
