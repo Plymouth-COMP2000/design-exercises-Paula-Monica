@@ -68,7 +68,6 @@ public class StaffSignupActivity extends AppCompatActivity {
     // Validation constants
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final int MIN_USERNAME_LENGTH = 3;
-    private static final int MIN_CONTACT_LENGTH = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,14 +206,13 @@ public class StaffSignupActivity extends AppCompatActivity {
             phonenumberWarning.setText("Phone number is required");
             phonenumberWarning.setVisibility(View.VISIBLE);
             isValid = false;
-        } else if (phonenumber.length() < MIN_CONTACT_LENGTH) {
-            phonenumberWarning.setText("Phone number must be at least " + MIN_CONTACT_LENGTH + " digits");
-            phonenumberWarning.setVisibility(View.VISIBLE);
-            isValid = false;
-        } else if (!phonenumber.matches("\\d+")) {
-            phonenumberWarning.setText("Phone number must contain only digits");
-            phonenumberWarning.setVisibility(View.VISIBLE);
-            isValid = false;
+        } else {
+            String phoneError = validatePhoneNumber(phonenumber);
+            if (phoneError != null) {
+                phonenumberWarning.setText(phoneError);
+                phonenumberWarning.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
         }
 
         // Validate password with enhanced security requirements
@@ -413,6 +411,35 @@ public class StaffSignupActivity extends AppCompatActivity {
         }
 
         // Password is valid
+        return null;
+    }
+
+    /**
+     Validate phone number
+     Allows flexibility for international numbers while ensuring basic validity
+
+     @param phone The phone number to validate
+     @return Error message if invalid, null if valid
+     */
+    private String validatePhoneNumber(String phone) {
+        // Remove common formatting characters for validation
+        String cleanPhone = phone.replaceAll("[\\s\\-\\(\\)\\+]", "");
+
+        // Check if it contains only digits after cleaning
+        if (!cleanPhone.matches("\\d+")) {
+            return "Phone number must contain only digits, spaces, hyphens, or parentheses";
+        }
+
+        // Check minimum length
+        if (cleanPhone.length() < 7) {
+            return "Phone number must be at least 7 digits";
+        }
+
+        // Check maximum length (International standard maximum)
+        if (cleanPhone.length() > 15) {
+            return "Phone number must be at most 15 digits";
+        }
+
         return null;
     }
 }
