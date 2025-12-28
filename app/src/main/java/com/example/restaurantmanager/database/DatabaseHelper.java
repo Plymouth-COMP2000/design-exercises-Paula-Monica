@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database configuration
     private static final String DATABASE_NAME = "RestaurantManager.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Table names
     private static final String TABLE_MENU = "menu_items";
@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_MENU_PRICE = "price";
     private static final String KEY_MENU_IMAGE = "image_url";
     private static final String KEY_MENU_DESC = "description";
+    private static final String KEY_MENU_CATEGORY = "category";
 
     // Reservations table columns
     private static final String KEY_RES_ID = "id";
@@ -67,7 +68,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + KEY_MENU_NAME + " TEXT NOT NULL,"
                 + KEY_MENU_PRICE + " REAL NOT NULL,"
                 + KEY_MENU_IMAGE + " TEXT,"
-                + KEY_MENU_DESC + " TEXT"
+                + KEY_MENU_DESC + " TEXT,"
+                + KEY_MENU_CATEGORY + " TEXT DEFAULT 'Other'"
                 + ")";
         db.execSQL(CREATE_MENU_TABLE);
 
@@ -88,9 +90,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MENU);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVATIONS);
-        onCreate(db);
+        if (oldVersion < 2) {
+            // Add category column to existing table
+            db.execSQL("ALTER TABLE " + TABLE_MENU + " ADD COLUMN " + KEY_MENU_CATEGORY + " TEXT DEFAULT 'Other'");
+        }
     }
 
     //Insert sample menu items for testing
@@ -102,6 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, 12.99);
         values.put(KEY_MENU_IMAGE, "pizza");
         values.put(KEY_MENU_DESC, "Classic pizza with tomato and mozzarella");
+        values.put(KEY_MENU_CATEGORY, "Mains");
         db.insert(TABLE_MENU, null, values);
 
         values.clear();
@@ -109,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, 8.99);
         values.put(KEY_MENU_IMAGE, "salad");
         values.put(KEY_MENU_DESC, "Fresh romaine lettuce with Caesar dressing");
+        values.put(KEY_MENU_CATEGORY, "Starters");
         db.insert(TABLE_MENU, null, values);
 
         values.clear();
@@ -116,6 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, 18.99);
         values.put(KEY_MENU_IMAGE, "salmon");
         values.put(KEY_MENU_DESC, "Fresh Atlantic salmon with vegetables");
+        values.put(KEY_MENU_CATEGORY, "Mains");
         db.insert(TABLE_MENU, null, values);
 
         values.clear();
@@ -123,6 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, 10.99);
         values.put(KEY_MENU_IMAGE, "burger");
         values.put(KEY_MENU_DESC, "Juicy beef patty with lettuce and tomato");
+        values.put(KEY_MENU_CATEGORY, "Mains");
         db.insert(TABLE_MENU, null, values);
     }
 
@@ -140,6 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, item.getPrice());
         values.put(KEY_MENU_IMAGE, item.getImageUrl());
         values.put(KEY_MENU_DESC, item.getDescription());
+        values.put(KEY_MENU_CATEGORY, item.getCategory());
 
         long id = db.insert(TABLE_MENU, null, values);
         db.close();
@@ -164,7 +172,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(1),    // name
                         cursor.getDouble(2),    // price
                         cursor.getString(3),    // image
-                        cursor.getString(4)     // description
+                        cursor.getString(4),     // description
+                        cursor.getString(5)     // category
                 );
                 menuList.add(item);
             } while (cursor.moveToNext());
@@ -174,6 +183,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return menuList;
     }
+
+
 
     /**
      Update existing menu item
@@ -187,6 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_MENU_PRICE, item.getPrice());
         values.put(KEY_MENU_IMAGE, item.getImageUrl());
         values.put(KEY_MENU_DESC, item.getDescription());
+        values.put(KEY_MENU_CATEGORY, item.getCategory());
 
         int rowsAffected = db.update(TABLE_MENU, values, KEY_MENU_ID + " = ?",
                 new String[]{String.valueOf(item.getId())});
@@ -291,6 +303,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return reservationList;
     }
+
+    /**
+     * Get menu items by category
+     * @param category Category to filter by
+     * @return List of MenuItem objects in that category
+     */
+    public List<MenuItem> getMenuItemsByCategory(String category) {
+        List<MenuItem> menuList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_MENU,
+                null,
+                KEY_MENU_CATEGORY + "=?",
+                new String[]{category},
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                MenuItem item = new MenuItem(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getDouble(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5)
+                );
+                menuList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return menuList;
+    }
+
+    /**
+     * Get all unique categories
+     * @return List of category names
+     */
+    public List<String> getAllCategories() {
+        List<String> categories = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT DISTINCT " + KEY_MENU_CATEGORY + " FROM " + TABLE_MENU +
+                        " WHERE " + KEY_MENU_CATEGORY + " IS NOT NULL ORDER BY " + KEY_MENU_CATEGORY,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                categories.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return categories;
+    }
+
 
     /**
      Update existing reservation

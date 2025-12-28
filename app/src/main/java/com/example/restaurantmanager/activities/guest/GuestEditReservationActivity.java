@@ -36,6 +36,9 @@ public class GuestEditReservationActivity extends AppCompatActivity {
     private TextView timeWarning;
     private Button saveChangesButton;
 
+    private static final int OPENING_HOUR = 11;  // 11:00 AM
+    private static final int CLOSING_HOUR = 22;  // 10:00 PM
+
     // Data
     private DatabaseHelper databaseHelper;
     private int reservationId;
@@ -165,27 +168,31 @@ public class GuestEditReservationActivity extends AppCompatActivity {
     //Show time picker dialog
 
     private void showTimePicker() {
-        Calendar calendar = Calendar.getInstance();
 
-        // If time already selected, parse it for initial value
-        if (!selectedTime.isEmpty()) {
-            String[] parts = selectedTime.split(":");
-            if (parts.length == 2) {
-                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
-                calendar.set(Calendar.MINUTE, Integer.parseInt(parts[1]));
-            }
-        }
+        Toast.makeText(this, "Restaurant hours: 11:00 AM - 10:00 PM", Toast.LENGTH_SHORT).show();
+
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 this,
                 (view, selectedHour, selectedMinute) -> {
+                    // Validate the selected time
+                    if (!isValidTime(selectedHour, selectedMinute)) {
+                        timeWarning.setText("Please select a time between 11:00 AM and 10:00 PM");
+                        timeWarning.setVisibility(View.VISIBLE);
+                        timePicker.setText("");
+                        selectedTime = "";
+                        return;
+                    }
+
+                    // Format: 19:30
                     selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute);
                     timePicker.setText(selectedTime);
                     timeWarning.setVisibility(View.INVISIBLE);
                 },
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
+                hour, minute, true // 24-hour format
         );
 
         timePickerDialog.show();
@@ -263,4 +270,66 @@ public class GuestEditReservationActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to update reservation. Please try again.", Toast.LENGTH_LONG).show();
         }
     }
+    /**
+     * Validate that the selected time is within restaurant hours
+     * and not in the past (if booking for today)
+     */
+    private boolean isValidTime(int hour, int minute) {
+        // Check restaurant hours
+        if (hour < OPENING_HOUR || hour >= CLOSING_HOUR) {
+            return false;
+        }
+
+        // If booking for today, check if time is in the future
+        if (isToday(selectedDate)) {
+            Calendar now = Calendar.getInstance();
+            Calendar selectedDateTime = Calendar.getInstance();
+
+            // Parse the selected date
+            String[] dateParts = selectedDate.split("-");
+            if (dateParts.length == 3) {
+                selectedDateTime.set(
+                        Integer.parseInt(dateParts[0]),
+                        Integer.parseInt(dateParts[1]) - 1,
+                        Integer.parseInt(dateParts[2]),
+                        hour,
+                        minute
+                );
+
+                // Check if selected time is in the past
+                if (selectedDateTime.before(now)) {
+                    return false;
+                }
+
+                // Require at least 1 hour advance booking
+                Calendar oneHourFromNow = Calendar.getInstance();
+                oneHourFromNow.add(Calendar.HOUR_OF_DAY, 1);
+
+                if (selectedDateTime.before(oneHourFromNow)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if the selected date is today
+     */
+    private boolean isToday(String dateString) {
+        if (dateString == null || dateString.isEmpty()) {
+            return false;
+        }
+
+        Calendar today = Calendar.getInstance();
+        String todayString = String.format("%04d-%02d-%02d",
+                today.get(Calendar.YEAR),
+                today.get(Calendar.MONTH) + 1,
+                today.get(Calendar.DAY_OF_MONTH)
+        );
+
+        return dateString.equals(todayString);
+    }
+
 }

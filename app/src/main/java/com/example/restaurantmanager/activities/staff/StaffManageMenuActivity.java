@@ -111,6 +111,7 @@ public class StaffManageMenuActivity extends AppCompatActivity
         intent.putExtra("ITEM_PRICE", item.getPrice());
         intent.putExtra("ITEM_DESCRIPTION", item.getDescription());
         intent.putExtra("ITEM_IMAGE", item.getImageUrl());
+        intent.putExtra("ITEM_CATEGORY", item.getCategory());
         startActivityForResult(intent, REQUEST_EDIT_ITEM);
     }
 

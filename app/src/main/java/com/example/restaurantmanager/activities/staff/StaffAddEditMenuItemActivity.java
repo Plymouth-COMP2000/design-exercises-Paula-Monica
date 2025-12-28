@@ -8,9 +8,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
@@ -25,6 +27,7 @@ import com.example.restaurantmanager.models.MenuItem;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /**
  StaffAddEditMenuItemActivity - Add or edit menu items
@@ -42,6 +45,8 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
     private EditText editItemName;
     private EditText editItemPrice;
     private EditText editItemDescription;
+
+    private Spinner categorySpinner;
     private Button btnSave;
 
     // Services
@@ -52,6 +57,16 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
     private int editItemId = -1;
     private String currentImagePath = null;
     private Uri photoUri;
+
+    //Categories
+    private static final String[] CATEGORIES = {
+            "Starters",
+            "Mains",
+            "Desserts",
+            "Drinks",
+            "Pasta",
+            "Other"
+    };
 
     // Permission request code
     private static final int CAMERA_PERMISSION_CODE = 100;
@@ -94,11 +109,15 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
         editItemName = findViewById(R.id.editItemName);
         editItemPrice = findViewById(R.id.editItemPrice);
         editItemDescription = findViewById(R.id.editItemDescription);
+        categorySpinner = findViewById(R.id.categorySpinner);
         btnSave = findViewById(R.id.btnSave);
 
         // Set title based on mode
         titleText.setText(isEditMode ? "Edit Menu Item" : "Add Menu Item");
         btnSave.setText(isEditMode ? "Update Menu Item" : "Save Menu Item");
+
+        //Set up category spinner
+        setupCategorySpinner();
     }
 
     //Setup activity result launchers for image selection
@@ -155,6 +174,15 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
         currentImagePath = intent.getStringExtra("ITEM_IMAGE");
         if (currentImagePath != null && !currentImagePath.isEmpty()) {
             loadImageIntoPreview(currentImagePath);
+        }
+
+        // Load category
+        String category = intent.getStringExtra("ITEM_CATEGORY");
+        if (category != null) {
+            int position = Arrays.asList(CATEGORIES).indexOf(category);
+            if (position >= 0) {
+                categorySpinner.setSelection(position);
+            }
         }
     }
 
@@ -227,6 +255,7 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
         String name = editItemName.getText().toString().trim();
         String priceStr = editItemPrice.getText().toString().trim();
         String description = editItemDescription.getText().toString().trim();
+        String category = categorySpinner.getSelectedItem().toString();
 
         if (name.isEmpty()) {
             editItemName.setError("Name is required");
@@ -266,7 +295,8 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
                 name,
                 price,
                 currentImagePath != null ? currentImagePath : "placeholder",
-                description
+                description,
+                category
         );
 
         if (isEditMode) {
@@ -286,6 +316,22 @@ public class StaffAddEditMenuItemActivity extends AppCompatActivity {
                 Toast.makeText(this, "Failed to add menu item", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    /**
+     * Setup category spinner with predefined categories
+     */
+    private void setupCategorySpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                CATEGORIES
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
+
+        // Set default selection to "Other"
+        categorySpinner.setSelection(CATEGORIES.length - 1);
     }
 
     //Check camera permission

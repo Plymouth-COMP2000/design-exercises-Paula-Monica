@@ -31,7 +31,9 @@ public class GuestViewMenuActivity extends AppCompatActivity {
     private EditText searchBar;
     private RecyclerView menuRecyclerView;
     private TextView emptyStateText;
-    private Button btnAllItems, btnStarters, btnPasta;
+    private Button btnAllItems, btnStarters, btnPasta, btnMains, btnDesserts, btnDrinks, btnOther;
+
+    private Button currentSelectedButton;
 
     // Data
     private DatabaseHelper databaseHelper;
@@ -71,6 +73,14 @@ public class GuestViewMenuActivity extends AppCompatActivity {
         btnAllItems = findViewById(R.id.btnAllItems);
         btnStarters = findViewById(R.id.btnStarters);
         btnPasta = findViewById(R.id.btnPasta);
+        btnMains = findViewById(R.id.btnMains);
+        btnDesserts = findViewById(R.id.btnDesserts);
+        btnDrinks = findViewById(R.id.btnDrinks);
+        btnOther = findViewById(R.id.btnOther);
+
+        // Set initial selection
+        currentSelectedButton = btnAllItems;
+        highlightButton(btnAllItems);
     }
 
     //Load menu items from database
@@ -119,19 +129,38 @@ public class GuestViewMenuActivity extends AppCompatActivity {
 
         // Category filter buttons
         btnAllItems.setOnClickListener(v -> {
-            filteredMenuItems = new ArrayList<>(allMenuItems);
-            menuAdapter.updateMenuItems(filteredMenuItems);
-            Toast.makeText(this, "Showing all items", Toast.LENGTH_SHORT).show();
+            filterByCategory(null);
+            highlightButton(btnAllItems);
         });
 
         btnStarters.setOnClickListener(v -> {
-            // TODO: Implement category filtering in Phase 4
-            Toast.makeText(this, "Starters filter - Coming soon!", Toast.LENGTH_SHORT).show();
+            filterByCategory("Starters");
+            highlightButton(btnStarters);
+        });
+
+        btnMains.setOnClickListener(v -> {
+            filterByCategory("Mains");
+            highlightButton(btnMains);
+        });
+
+        btnDesserts.setOnClickListener(v -> {
+            filterByCategory("Desserts");
+            highlightButton(btnDesserts);
+        });
+
+        btnDrinks.setOnClickListener(v -> {
+            filterByCategory("Drinks");
+            highlightButton(btnDrinks);
         });
 
         btnPasta.setOnClickListener(v -> {
-            // TODO: Implement category filtering in Phase 4
-            Toast.makeText(this, "Pasta filter - Coming soon!", Toast.LENGTH_SHORT).show();
+            filterByCategory("Pasta");
+            highlightButton(btnPasta);
+        });
+
+        btnOther.setOnClickListener(v -> {
+            filterByCategory("Other");
+            highlightButton(btnOther);
         });
     }
 
@@ -179,5 +208,65 @@ public class GuestViewMenuActivity extends AppCompatActivity {
             menuAdapter.updateMenuItems(filteredMenuItems);
         }
     }
+
+    /**
+     * Filter menu items by category
+     * @param category Category to filter by, or null for all items
+     */
+    private void filterByCategory(String category) {
+        filteredMenuItems.clear();
+
+        if (category == null) {
+            // Show all items
+            filteredMenuItems.addAll(allMenuItems);
+            Toast.makeText(this, "Showing all items", Toast.LENGTH_SHORT).show();
+        } else {
+            // Filter by category
+            for (MenuItem item : allMenuItems) {
+                if (category.equals(item.getCategory())) {
+                    filteredMenuItems.add(item);
+                }
+            }
+            Toast.makeText(this, "Showing " + category, Toast.LENGTH_SHORT).show();
+        }
+
+        // Update adapter
+        menuAdapter.updateMenuItems(filteredMenuItems);
+
+        // Show empty state if no results
+        if (filteredMenuItems.isEmpty()) {
+            emptyStateText.setText("No items in " + category + " category");
+            emptyStateText.setVisibility(View.VISIBLE);
+            menuRecyclerView.setVisibility(View.GONE);
+        } else {
+            emptyStateText.setVisibility(View.GONE);
+            menuRecyclerView.setVisibility(View.VISIBLE);
+        }
+
+        // Scroll to top
+        menuRecyclerView.smoothScrollToPosition(0);
+    }
+
+    /**
+     * Highlight the selected category button
+     * HCI Principle: Feedback - show which filter is active
+     */
+    private void highlightButton(Button selectedButton) {
+        // Reset all buttons to default state (gray color)
+        btnAllItems.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnStarters.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnMains.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnDesserts.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnDrinks.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnPasta.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+        btnOther.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF94b1b6));
+
+        // Highlight selected button (darker color)
+        selectedButton.setBackgroundTintList(android.content.res.ColorStateList.valueOf(0xFF4CAF50));
+
+        // Update current selection
+        currentSelectedButton = selectedButton;
+    }
+
 }
 

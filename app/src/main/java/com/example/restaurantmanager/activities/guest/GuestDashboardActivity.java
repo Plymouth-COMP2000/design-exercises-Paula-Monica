@@ -44,6 +44,10 @@ public class GuestDashboardActivity extends AppCompatActivity {
         makeReservationButton = findViewById(R.id.makeReservationButton);
         myReservationsButton = findViewById(R.id.myReservationsButton);
 
+        //Personalised welcome msg
+        String username = sessionManager.getUsername();
+        welcomeMessage.setText("Welcome, " + username + "!");
+
         setupListeners();
     }
 

@@ -94,6 +94,57 @@
                 android:textColor="#000000"
                 style="?android:attr/borderlessButtonStyle" />
 
+            <Button
+                android:id="@+id/btnMains"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Mains"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnDesserts"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Desserts"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnDrinks"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Drinks"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnOther"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Other"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
         </LinearLayout>
     </HorizontalScrollView>
 

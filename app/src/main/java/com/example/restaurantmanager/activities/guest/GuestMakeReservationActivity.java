@@ -37,6 +37,10 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
     private TextView timeWarning;
     private Button confirmButton;
 
+    // Restaurant operating hours
+    private static final int OPENING_HOUR = 11;  // 11:00 AM
+    private static final int CLOSING_HOUR = 22;  // 10:00 PM
+
     // Data
     private DatabaseHelper databaseHelper;
     private SessionManager sessionManager;
@@ -140,6 +144,9 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
 
     //Show time picker dialog
     private void showTimePicker() {
+
+        Toast.makeText(this, "Restaurant hours: 11:00 AM - 10:00 PM", Toast.LENGTH_SHORT).show();
+
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
@@ -147,10 +154,19 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 this,
                 (view, selectedHour, selectedMinute) -> {
+                    // Validate the selected time
+                    if (!isValidTime(selectedHour, selectedMinute)) {
+                        timeWarning.setText("Please select a time between 11:00 AM and 10:00 PM");
+                        timeWarning.setVisibility(View.VISIBLE);
+                        timePicker.setText("");
+                        selectedTime = "";
+                        return;
+                    }
+
                     // Format: 19:30
                     selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute);
                     timePicker.setText(selectedTime);
-                    timeWarning.setVisibility(View.INVISIBLE); // Hide warning when time selected
+                    timeWarning.setVisibility(View.INVISIBLE);
                 },
                 hour, minute, true // 24-hour format
         );
@@ -185,6 +201,22 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
             isValid = false;
         } else {
             timeWarning.setVisibility(View.INVISIBLE);
+        }
+
+        // Additional time validation
+        if (!selectedTime.isEmpty()) {
+            String[] timeParts = selectedTime.split(":");
+            if (timeParts.length == 2) {
+                int hour = Integer.parseInt(timeParts[0]);
+                int minute = Integer.parseInt(timeParts[1]);
+
+                if (!isValidTime(hour, minute)) {
+                    timeWarning.setText("Invalid time selected. Please choose a time between 11:00 AM and 10:00 PM");
+                    timeWarning.setVisibility(View.VISIBLE);
+                    Toast.makeText(this, "Please select a valid time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
         }
 
         // If validation fails, stop here
@@ -238,5 +270,67 @@ public class GuestMakeReservationActivity extends AppCompatActivity {
             // Error
             Toast.makeText(this, "Failed to create reservation. Please try again.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * Validate that the selected time is within restaurant hours
+     * and not in the past (if booking for today)
+     */
+    private boolean isValidTime(int hour, int minute) {
+        // Check restaurant hours
+        if (hour < OPENING_HOUR || hour >= CLOSING_HOUR) {
+            return false;
+        }
+
+        // If booking for today, check if time is in the future
+        if (isToday(selectedDate)) {
+            Calendar now = Calendar.getInstance();
+            Calendar selectedDateTime = Calendar.getInstance();
+
+            // Parse the selected date
+            String[] dateParts = selectedDate.split("-");
+            if (dateParts.length == 3) {
+                selectedDateTime.set(
+                        Integer.parseInt(dateParts[0]),
+                        Integer.parseInt(dateParts[1]) - 1,
+                        Integer.parseInt(dateParts[2]),
+                        hour,
+                        minute
+                );
+
+                // Check if selected time is in the past
+                if (selectedDateTime.before(now)) {
+                    return false;
+                }
+
+                // Require at least 1 hour advance booking
+                Calendar oneHourFromNow = Calendar.getInstance();
+                oneHourFromNow.add(Calendar.HOUR_OF_DAY, 1);
+
+                if (selectedDateTime.before(oneHourFromNow)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if the selected date is today
+     */
+    private boolean isToday(String dateString) {
+        if (dateString == null || dateString.isEmpty()) {
+            return false;
+        }
+
+        Calendar today = Calendar.getInstance();
+        String todayString = String.format("%04d-%02d-%02d",
+                today.get(Calendar.YEAR),
+                today.get(Calendar.MONTH) + 1,
+                today.get(Calendar.DAY_OF_MONTH)
+        );
+
+        return dateString.equals(todayString);
     }
 }

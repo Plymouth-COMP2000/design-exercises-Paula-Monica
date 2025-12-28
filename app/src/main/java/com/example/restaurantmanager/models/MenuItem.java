@@ -6,22 +6,25 @@ public class MenuItem {
     private double price;
     private String imageUrl;
     private String description;
+    private String category;
 
     //Constructor with ID (for existing items from database)
-    public MenuItem(int id, String name, double price, String imageUrl, String description) {
+    public MenuItem(int id, String name, double price, String imageUrl, String description, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.category = category;
     }
 
     //Constructor without ID (for new items before database insertion)
-    public MenuItem(String name, double price, String imageUrl, String description) {
+    public MenuItem(String name, double price, String imageUrl, String description, String category) {
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.description = description;
+        this.category = category;
     }
 
     // Getters
@@ -30,6 +33,7 @@ public class MenuItem {
     public double getPrice() { return price; }
     public String getImageUrl() { return imageUrl; }
     public String getDescription() { return description; }
+    public String getCategory() { return category; }
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -37,4 +41,5 @@ public class MenuItem {
     public void setPrice(double price) { this.price = price; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setDescription(String description) { this.description = description; }
+    public void setCategory(String category) { this.category = category; }
 }

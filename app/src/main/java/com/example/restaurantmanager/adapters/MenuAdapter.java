@@ -106,6 +106,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     }
 
     private void loadMenuItemImage(ImageView imageView, String imagePath) {
+        // Reset to placeholder first
+        imageView.setImageResource(android.R.drawable.ic_menu_gallery);
 
         // Keep placeholder if no image
         if (imagePath == null || imagePath.isEmpty() || imagePath.equals("placeholder")) {
