@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="8dp">
+
+    <!--Reservation Card-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#94b1b6">
+
+        <!--Top row: Guest name and status-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/guestName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Guest Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"/>
+
+            <TextView
+                android:id="@+id/reservationStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirmed"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:background="#edc099"
+                android:padding="6dp"
+                android:fontFamily="sans-serif-medium"/>
+        </LinearLayout>
+
+        <!--Date and time-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅 "
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/reservationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/12/2024"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕐 "
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/reservationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18:00"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"/>
+        </LinearLayout>
+
+        <!--Number of guests-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👥 "
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/numberOfGuests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 guests"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"/>
+        </LinearLayout>
+
+        <!--Action buttons-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/viewDetailsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="View Details"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#edc099"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"/>
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Cancel"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#e5a975"
+                android:textColor="#000000"
+                android:fontFamily="sans-serif-medium"
+                style="?android:attr/borderlessButtonStyle"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

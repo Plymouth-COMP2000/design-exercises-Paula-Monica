@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#c8d5d7">
+
+    <!--Top bar with back button and search-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#c8d5d7">
+
+        <!--Back btn-->
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_arrow"
+            android:contentDescription="@string/back_arrow_description"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp"/>
+
+        <!--Search bar-->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="@string/search_menu_hint"
+            android:background="@drawable/search_bar_background"
+            android:paddingStart="16dp"
+            android:paddingEnd="20dp"
+            android:drawableEnd="@android:drawable/ic_menu_search"
+            android:inputType="text"
+            tools:ignore="Autofill,RtlSymmetry" />
+
+    </LinearLayout>
+
+    <!-- Category filter chips -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:background="#c8d5d7"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAllItems"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="All"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnStarters"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/starters_category"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnPasta"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/pasta_category"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnMains"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Mains"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnDesserts"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Desserts"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnDrinks"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Drinks"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+            <Button
+                android:id="@+id/btnOther"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Other"
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:backgroundTint="#94b1b6"
+                android:textColor="#000000"
+                style="?android:attr/borderlessButtonStyle" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!--RecyclerView for dynamic menu items-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:clipToPadding="false" />
+
+    <!-- Empty state (shown when no items) -->
+    <TextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="No menu items found"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>
