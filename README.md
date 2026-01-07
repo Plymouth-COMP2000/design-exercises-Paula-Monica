@@ -66,3 +66,43 @@ An Android application for managing restaurant operations, built with Java and A
 - Requires valid staff authorization code
 - Creates account with "staff" user type
 
+## Third-Party Resources Used
+
+### External Libraries
+
+1. **Volley (com.android.volley)**
+   - Purpose: HTTP networking library for API communication
+   - Used for: Creating and managing network requests to the RESTful API
+   - Documentation: https://google.github.io/volley/
+
+2. **Gson (com.google.gson)**
+   - Purpose: JSON serialization/deserialization library
+   - Used for: Converting Java objects to JSON and vice versa
+   - Documentation: https://github.com/google/gson
+
+### Android Standard Libraries (AndroidX)
+
+- **RecyclerView** - For efficient list rendering (menus, reservations)
+- **CardView** - For card-based UI components
+- **AppCompat** - For backward compatibility and modern UI components
+- **NotificationCompat** - For building notifications
+
+### External APIs
+
+- **COMP2000 RESTful API**
+  - Base URL: http://10.240.72.69/comp2000/coursework
+  - Student ID: 10921081
+  - Purpose: User authentication and data storage
+  - API Documentation: Provided via DLE
+
+### Built-in Android Components
+
+- **SQLite** - Local database storage
+- **SharedPreferences** - Session and preference management
+- **NotificationManager** - System notification service
+- **DatePickerDialog** - Date selection UI
+- **FileProvider** - Image file handling
+
+### Custom Resources
+
+All drawable resources (icons, backgrounds, logo) are custom-created or part of the application's original design.
