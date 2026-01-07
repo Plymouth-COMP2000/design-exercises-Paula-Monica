@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Restaurant Manager</string>
+    <string name="app_logo_description"> Restaurant manager logo</string>
+    <string name="login_btn"> Login</string>
+    <string name="guest_signup"> Guest Account Creation</string>
+    <string name="staff_signup"> Staff Account Creation</string>
+    <string name="app_info"> Restaurant Manager helps you easily handle every aspect of dining management, from booking restaurant reservations and browsing menus to organizing and managing reservations for your own restaurant.</string>
+    <string name="guest_signup_title"> Guest Sign-up </string>
+    <string name="email_label"> Email: </string>
+    <string name="username_label"> Username: </string>
+    <string name="firstname_label"> First name: </string>
+    <string name="lastname_label"> Last name: </string>
+    <string name="phone_number_label"> Phone number: </string>
+    <string name="password_label"> Password: </string>
+    <string name="signup_btn"> Signup </string>
+    <string name="back_arrow_description"> Return arrow </string>
+    <string name="incorrect_email"> Email has been taken or is incorrectly formatted </string>
+    <string name="incorrect_username"> Username has been taken </string>
+    <string name="incorrect_firstname"> First name is incorrectly formated </string>
+    <string name="incorrect_lastname"> Last name is incorrectly formated </string>
+    <string name="incorrect_phonenumber"> Phone number is incorrectly formatted or taken </string>
+    <string name="incorrect_password"> Password is too weak </string>
+    <string name="confirm_btn"> Confirm </string>
+    <string name="successful_signup"> Sign-up Successful! </string>
+    <string name="welcome_back"> Welcome Back! </string>
+    <string name="unsuccessful_signup"> Email or password is incorrect </string>
+    <string name="sign_out_btn">Sign out</string>
+    <string name="settings_btn">Settings⚙</string>
+    <string name="welcome_message">Welcome Name!</string>
+    <string name="view_menu_btn">View menu</string>
+    <string name="make_reservation_btn">Make reservation</string>
+    <string name="my_reservations_btn">My reservations</string>
+    <string name="search_menu_hint">Search menu...</string>
+    <string name="starters_category">Starters:</string>
+    <string name="pasta_category">Pasta:</string>
+    <string name="menu_item_image">Menu item image</string>
+    <string name="expand_description">Expand for description</string>
+    <string name="item_description_example">Item Description\n\nPasta with tomatoes.</string>
+    <string name="item_name"> Item Name </string>
+    <string name="price"> £ </string>
+    <string name="change_details_title">Change details:</string>
+    <string name="notification_preferences_title">Change notification preferences:</string>
+    <string name="reservation_reminders_title">Reservation reminders:</string>
+    <string name="reservation_changes_notif">Reservation changes:</string>
+    <string name="cancellation_notif">Cancellation:</string>
+    <string name="datetime_change_notif">Date/Time change:</string>
+    <string name="day_before_reminder">Day before:</string>
+    <string name="hour_before_reminder">Hour before:</string>
+    <string name="save_changes_btn">Save changes</string>
+    <string name="toggle_notification">Toggle notification</string>
+    <string name="new_reservation_title">New reservation:</string>
+    <string name="number_of_people_label">Number of people:</string>
+    <string name="date_label">Date:</string>
+    <string name="time_label">Time:</string>
+    <string name="no_of_ppl_warning"> Please select the number of people </string>
+    <string name="date_warning"> Please select a valid date and ensure the format is dd/mm/yy </string>
+    <string name="time_warning"> Please select a valid time and ensure the format is hh:mm </string>
+    <string name="edit_reservation_title"> Edit reservation: </string>
+    <string name="upcoming_reservations_title">Upcoming Reservations:</string>
+    <string name="edit_description">Edit reservation</string>
+    <string name="delete_description">Delete reservation</string>
+    <string name="successful_reservation">Reservation made successfully!</string>
+    <string name="successful_edit_reservation">Reservation edited successfully!</string>
+
+    <!-- Number of people options -->
+    <string-array name="number_of_people_array">
+        <item>1 person</item>
+        <item>2 people</item>
+        <item>3 people</item>
+        <item>4 people</item>
+        <item>5 people</item>
+        <item>6 people</item>
+        <item>7 people</item>
+        <item>8 people</item>
+        <item>9 people</item>
+        <item>10+ people</item>
+    </string-array>
+
+    <!-- Staff Authentication Code Screen -->
+    <string name="staff_auth_title">Staff Authentication</string>
+    <string name="staff_auth_instructions">Please enter the staff authentication code provided by your manager to proceed with registration.</string>
+    <string name="staff_code_label">Staff Code</string>
+    <string name="staff_code_hint">Enter code</string>
+    <string name="incorrect_staff_code">Invalid staff code</string>
+    <string name="verify_code_btn">Verify Code</string>
+    <string name="back_to_login_link">Back to Login</string>
+    <string name="staff_code_required">Staff authentication code is required</string>
+    <string name="staff_signup_title"> Staff Sign-up </string>
+
+
+</resources>
